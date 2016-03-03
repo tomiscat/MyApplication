@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.neenbedankt.android-apt'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -18,10 +18,15 @@ android {
         }
     }
 }
-
+ext {
+    robobindingVersion = '0.8.12'
+    //robobindingVersion = '0.8.8'
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile "org.robobinding:robobinding:${robobindingVersion}"
+    compile "org.robobinding:extras:${robobindingVersion}"
 }
