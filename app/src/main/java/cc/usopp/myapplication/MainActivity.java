@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.robobinding.ViewBinder;
+import org.robobinding.binder.BinderFactory;
+import org.robobinding.binder.BinderFactoryBuilder;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        PresentationModel presentationModel = new PresentationModel();
+        ViewBinder viewBinder = createViewBinder();
+        View rootView = viewBinder.inflateAndBind(R.layout.activity_main, presentationModel);
+        setContentView(rootView);
+    }
+
+    private ViewBinder createViewBinder() {
+        BinderFactory reusableBinderFactory = new BinderFactoryBuilder().build();
+        return reusableBinderFactory.createViewBinder(this);
     }
 
     @Override
