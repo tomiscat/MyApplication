@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.android.databinding'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -29,4 +31,6 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile "org.robobinding:robobinding:${robobindingVersion}"
     compile "org.robobinding:extras:${robobindingVersion}"
+    apt "org.robobinding:codegen:${robobindingVersion}"
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
