@@ -33,4 +33,5 @@ dependencies {
     compile "org.robobinding:extras:${robobindingVersion}"
     apt "org.robobinding:codegen:${robobindingVersion}"
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.squareup:otto:1.3.8'
 }
