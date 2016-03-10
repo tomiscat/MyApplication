@@ -18,8 +18,9 @@ import org.robobinding.binder.BinderFactoryBuilder;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cc.usopp.myapplication.framework.action.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = "ActivityDemo";
 
@@ -37,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
-
         setSupportActionBar(toolbar);
 
         /*
@@ -48,6 +47,20 @@ public class MainActivity extends AppCompatActivity {
             View rootView = viewBinder.inflateAndBind(R.layout.activity_main, presentationModel);
             setContentView(rootView);
         */
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("edit", edit.getText().toString());
+        Log.d(TAG, "txtView onSaveInstanceState~~~");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "txtView onRestoreInstanceState~~~");
+        Log.d(TAG, "edit" + savedInstanceState.get("edit"));
     }
 
     @OnClick(R.id.txtView)
