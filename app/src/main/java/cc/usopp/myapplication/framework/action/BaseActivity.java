@@ -15,7 +15,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    protected void initBinding(){
         ButterKnife.bind(this);//绑定军刀嘎嘎嘎
     }
 

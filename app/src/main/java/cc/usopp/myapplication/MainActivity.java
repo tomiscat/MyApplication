@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 
@@ -17,6 +18,7 @@ import org.robobinding.binder.BinderFactory;
 import org.robobinding.binder.BinderFactoryBuilder;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cc.usopp.myapplication.framework.action.BaseActivity;
 import cc.usopp.myapplication.framework.bean.DataEvent;
@@ -35,10 +37,15 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar)
     Toolbar toolbar;
 
+    @Bind(R.id.txtView)
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initBinding();//各种绑定初始化
 
         setSupportActionBar(toolbar);
 
