@@ -1,5 +1,6 @@
 package cc.usopp.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +30,7 @@ import butterknife.OnClick;
 import cc.usopp.myapplication.framework.action.BaseActivity;
 import cc.usopp.myapplication.framework.bean.DataEvent;
 import cc.usopp.myapplication.framework.xFrame.AppBus;
+import cc.usopp.myapplication.testRecycler.activity.RecyclerViewActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -42,7 +44,6 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     @Bind(R.id.txtView)
     TextView textView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,21 @@ public class MainActivity extends BaseActivity {
     @Subscribe
     public void testEvent(DataEvent data) {
         Log.d(TAG, "testEvent: " + data.getContent());
+
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+
+        startActivityForResult(intent, 0);
     }
 
-
+    /**
+     * 为了得到传回的数据，必须在前面的Activity中（指MainActivity类）重写onActivityResult方法
+     *
+     * requestCode 请求码，即调用startActivityForResult()传递过去的值
+     * resultCode 结果码，结果码用于标识返回数据来自哪个新Activity
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String result = data.getExtras().getString("result");//得到新Activity 关闭后返回的数据
+        Log.i(TAG, result);
+    }
 }
